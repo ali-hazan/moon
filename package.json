@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vueuse/core": "^8.2.6",
     "ant-design-vue": "^3.1.1",
     "core-js": "^3.6.5",
     "swiper": "^8.1.0",
