@@ -1,17 +1,19 @@
 <template>
   <a-layout has-sider>
     <a-layout-sider
+    v-model:collapsed="collapsed"
       :style="{
         overflow: 'auto',
-        height: '100vh',
+        height: '90vh',
         position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0,
+        left: '16px',
+        top: '16px',
+        bottom: '16px',
+        borderRadius: '48px',
       }"
     >
       <div class="logo" />
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+      <a-menu v-model:selectedKeys="selectedKeys"  mode="inline">
         <a-menu-item key="1">
           <user-outlined />
           <span class="nav-text">nav 1</span>
@@ -46,8 +48,7 @@
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
-    <a-layout :style="{ marginLeft: '200px' }">
-      <a-layout-header :style="{ background: '#fff', padding: 0 }" />
+    <a-layout :style="collapsed?{ marginLeft: '96px' }:{ marginLeft: '216px' }">
       <a-layout-content :style="{ margin: '24px 16px 0', overflow: 'initial' }">
         <router-view />
       </a-layout-content>
@@ -83,6 +84,7 @@ export default defineComponent({
 
   setup() {
     return {
+      collapsed: ref(true),
       selectedKeys: ref(["4"]),
     };
   },
