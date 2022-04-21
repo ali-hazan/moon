@@ -1,13 +1,12 @@
 <template>
   <div>
-      This is main page
+     <kanban-board/>
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import KanbanBoard from "@/components/KanbanBoard"
 
-}
 </script>
 
 <style>
