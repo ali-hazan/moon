@@ -43,3 +43,21 @@ body,
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.ant-tooltip-inner {
+
+  color: #000 !important;
+
+  background-color: rgb(255 255 255 / 75%) !important;
+  border-radius: 8px !important;
+
+}
+
+.ant-tooltip-inner .nav-text{
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+
+.ant-tooltip-arrow-content{
+  background-color: #fff !important;
+}
