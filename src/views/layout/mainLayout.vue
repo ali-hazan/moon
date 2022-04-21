@@ -10,6 +10,7 @@
         top: '16px',
         bottom: '16px',
         borderRadius: '48px',
+        overflowX: 'hidden'
       }"
     >
       <div class="logo" />
@@ -47,6 +48,8 @@
           <span class="nav-text">nav 8</span>
         </a-menu-item>
       </a-menu>
+
+      <a-button class="nav-collapse-btn" @click="collapsed=!collapsed">Togle</a-button>
     </a-layout-sider>
     <a-layout :style="collapsed?{ marginLeft: '96px' }:{ marginLeft: '216px' }">
       <a-layout-content :style="{ margin: '24px 16px 0', overflow: 'initial' }">
@@ -102,5 +105,10 @@ export default defineComponent({
 
 [data-theme="dark"] .site-layout .site-layout-background {
   background: #141414;
+}
+.nav-collapse-btn{
+  position: absolute !important;
+  bottom: 12px;
+  left: 0px;
 }
 </style>
