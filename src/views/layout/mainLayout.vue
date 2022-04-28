@@ -6,6 +6,7 @@
         overflow: 'auto',
         height: '90vh',
         position: 'fixed',
+
         left: '16px',
         top: '16px',
         bottom: '16px',
@@ -51,9 +52,10 @@
         </a-menu>
       </div>
 
-      <a-button class="nav-collapse-btn" @click="collapsed = !collapsed"
-        >Togle</a-button
-      >
+      <div class="nav-collapse-btn" @click="collapsed = !collapsed">
+        <right-circle-outlined v-if="collapsed" />
+        <left-circle-outlined v-else />
+      </div>
     </a-layout-sider>
     <a-layout
       :style="collapsed ? { marginLeft: '96px' } : { marginLeft: '216px' }"
@@ -77,6 +79,8 @@ import {
   AppstoreOutlined,
   TeamOutlined,
   ShopOutlined,
+  RightCircleOutlined,
+  LeftCircleOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, ref } from "vue";
 export default defineComponent({
@@ -89,6 +93,8 @@ export default defineComponent({
     AppstoreOutlined,
     TeamOutlined,
     ShopOutlined,
+    RightCircleOutlined,
+    LeftCircleOutlined,
   },
 
   setup() {
@@ -117,4 +123,13 @@ export default defineComponent({
   justify-content: space-between;
   flex-direction: column;
 }
+.nav-collapse-btn {
+  border: none !important;
+  margin-bottom: 28px;
+  font-size: 22px;
+}
+.nav-collapse-btn:hover {
+  color: red;
+}
+
 </style>
