@@ -15,40 +15,20 @@
       }"
     >
       <div>
-        <div class="logo" />
-        <a-menu v-model:selectedKeys="selectedKeys" mode="inline">
+        <div class="logo-wrapper">
+          <img src="@/assets/logo.png" alt="Alchemi" class="logo" /> <span></span>
+        </div>
+
+        <a-menu
+          v-model:selectedKeys="selectedKeys"
+          mode="inline"
+          style="margin-top: 8px"
+        >
           <a-menu-item key="1">
             <user-outlined />
             <span class="nav-text">nav 1</span>
           </a-menu-item>
-          <a-menu-item key="2">
-            <video-camera-outlined />
-            <span class="nav-text">nav 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <upload-outlined />
-            <span class="nav-text">nav 3</span>
-          </a-menu-item>
-          <a-menu-item key="4">
-            <bar-chart-outlined />
-            <span class="nav-text">nav 4</span>
-          </a-menu-item>
-          <a-menu-item key="5">
-            <cloud-outlined />
-            <span class="nav-text">nav 5</span>
-          </a-menu-item>
-          <a-menu-item key="6">
-            <appstore-outlined />
-            <span class="nav-text">nav 6</span>
-          </a-menu-item>
-          <a-menu-item key="7">
-            <team-outlined />
-            <span class="nav-text">nav 7</span>
-          </a-menu-item>
-          <a-menu-item key="8">
-            <shop-outlined />
-            <span class="nav-text">nav 8</span>
-          </a-menu-item>
+       
         </a-menu>
       </div>
 
@@ -64,7 +44,7 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer :style="{ textAlign: 'center' }">
-        AlchemiDigit ©2022 Created by Ali Hassan
+        AlchemiDigit ©2022 
       </a-layout-footer>
     </a-layout>
   </a-layout>
@@ -131,5 +111,12 @@ export default defineComponent({
 .nav-collapse-btn:hover {
   color: red;
 }
-
+.logo-wrapper {
+  background-color: #000;
+  padding-top: 12px;
+  padding-bottom: 18px;
+}
+.logo {
+  width: 28px;
+}
 </style>
