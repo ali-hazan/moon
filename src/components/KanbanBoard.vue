@@ -1,79 +1,126 @@
 <template>
-  <div class="row">
-    <div class="col-3">
-      <h3>Draggable 1</h3>
-      <draggable
-        class="list-group"
-        :list="list1"
-        group="people"
-        @change="log"
-        itemKey="name"
+  <div style="position: relative">
+    <a-row>
+      <a-col
+        :xs="24"
+        :sm="12"
+        :md="8"
+        v-for="item in kanbanPostProcessed"
+        :key="item.id"
       >
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
-        </template>
-      </draggable>
-    </div>
+        <div class="alchemi-kanban-col-wrapper">
+          <div class="alchemi-space-between">
+            <h4>
+              {{ item.title }} <span>{{ item.total }}</span>
+            </h4>
+            <job-modal :id="item.id" @created="newJobAdded" />
+          </div>
 
-    <div class="col-3">
-      <h3>Draggable 2</h3>
-      <draggable
-        class="list-group"
-        :list="list2"
-        group="people"
-        @change="log"
-        itemKey="name"
-      >
-        <template #item="{ element, index }">
-          <div class="list-group-item">{{ element.name }} {{ index }}</div>
-        </template>
-      </draggable>
-    </div>
-
-    <rawDisplayer class="col-3" :value="list1" title="List 1" />
-
-    <rawDisplayer class="col-3" :value="list2" title="List 2" />
+          <draggable
+            class="alchemi-kanban-col"
+            :list="item.tasks"
+            group="board"
+            @change="log"
+            itemKey="id"
+          >
+            <template #item="{ element }">
+              <div class="alchemi-kanban-card">
+                {{ element.title }} {{ element.desc }}
+              </div>
+            </template>
+          </draggable>
+        </div>
+      </a-col>
+    </a-row>
   </div>
 </template>
 <script>
-import draggable from 'vuedraggable'
+import draggable from "vuedraggable";
+import JobModal from "./JobModal.vue";
 
 export default {
   name: "two-lists",
   display: "Two Lists",
   order: 1,
   components: {
-    draggable
+    draggable,
+    JobModal,
   },
   data() {
     return {
-      list1: [
-        { name: "John", id: 1 },
-        { name: "Joao", id: 2 },
-      
+      board: [
+        {
+          order: 1,
+          id: 1,
+          title: "To Do",
+          tasks: [
+            {
+              id: 1,
+              title: "Task 1",
+              desc: "This is description 1 ",
+            },
+            {
+              id: 2,
+              title: "Task 2",
+              desc: "This is description 2",
+            },
+          ],
+        },
+        {
+          order: 2,
+          id: 2,
+          title: "In Progress",
+          tasks: [
+            {
+              id: 3,
+              title: "Task 3",
+              desc: "This is description 3",
+            },
+            {
+              id: 4,
+              title: "Task 4",
+              desc: "This is description 4",
+            },
+          ],
+        },
+        {
+          order: 3,
+          id: 3,
+          title: "Completed",
+          tasks: [
+            {
+              id: 5,
+              title: "Task 5",
+              desc: "This is description 5 ",
+            },
+            {
+              id: 6,
+              title: "Task 6",
+              desc: "This is description 6",
+            },
+          ],
+        },
       ],
-      list2: [
-        { name: "Juan", id: 5 },
-        { name: "Edgard", id: 6 },
-        { name: "Johnson", id: 7 }
-      ]
     };
   },
+  computed: {
+    kanbanPostProcessed() {
+      return this.board.map((item) => {
+        item.total = item.tasks.length;
+        return item;
+      });
+    },
+  },
   methods: {
-    add: function() {
-      this.list.push({ name: "Juan" });
-    },
-    replace: function() {
-      this.list = [{ name: "Edgard" }];
-    },
-    clone: function(el) {
-      return {
-        name: el.name + " cloned"
-      };
-    },
-    log: function(evt) {
+    log: function (evt) {
       window.console.log(evt);
-    }
-  }
+      console.log(this.board);
+    },
+    newJobAdded: function (item) {
+      const data = item.data;
+      const id = item.id;
+      this.board.find((item) => item.id === id).tasks.push(data);
+    },
+  },
 };
 </script>

@@ -61,3 +61,22 @@ body,
 .ant-tooltip-arrow-content{
   background-color: #fff !important;
 }
+
+
+/* Custom style */
+.alchemi-kanban-col{
+  min-height: 180px;
+}
+.alchemi-kanban-card{
+  background-color: #ffff;
+  padding: 12px 8px;
+  border-radius: 12px;
+  margin: 8px;
+}
+
+.alchemi-space-between{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 12px;
+}
